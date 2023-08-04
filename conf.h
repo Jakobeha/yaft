@@ -39,4 +39,10 @@ const char *term_name = "yaft-256color";
 #endif
 
 /* shell */
-	const char *shell_cmd = "/usr/bin/fish";
+#if defined(__linux__) || defined(__MACH__)
+	const char *shell_cmd = "/bin/bash";
+#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+	const char *shell_cmd = "/bin/csh";
+#elif defined(__ANDROID__)
+	const char *shell_cmd = "/system/bin/sh";
+#endif
